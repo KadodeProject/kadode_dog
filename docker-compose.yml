@@ -1,0 +1,34 @@
+version: "3"
+services:
+  go:
+    build:
+      context: .
+      dockerfile: ./infra/dev/go/Dockerfile
+    volumes:
+      - ./backend:/backend
+    environment:
+      TZ: Asia/Tokyo
+    tty: true
+    ports:
+      - 8080:8080
+
+  mysql:
+    build: ./infra/dev/mysql
+    environment:
+      TZ: Asia/Tokyo
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: backend
+    ports:
+      - 13306:3306
+    volumes:
+      - mysql_volume:/var/lib/mysql
+
+  nginx:
+    build: ./infra/dev/nginx
+    ports:
+      - "81:81"
+    depends_on:
+      - "go"
+
+volumes:
+  mysql_volume:

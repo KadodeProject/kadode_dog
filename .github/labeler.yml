@@ -1,0 +1,14 @@
+📡portal:
+  - frontend/*
+🏠localInfra:
+  - docker-compose.yml
+  - infra/dev/*
+🐙github:
+  - .github/*
+✈ci:
+  - .github/workflows/*
+  - .github/labeler.yml
+📄docs:
+  - README.md
+  - LICENSE
+  - memo.md
